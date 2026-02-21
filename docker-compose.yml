@@ -1,0 +1,16 @@
+services:
+  lavalink:
+    image: optimus0701/lavalink
+    build: .
+    container_name: lavalink
+    restart: unless-stopped
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+    env_file: .env
+    environment:
+      - SERVER_PORT=${SERVER_PORT}
+      - LAVALINK_SERVER_PASSWORD=${LAVALINK_SERVER_PASSWORD}
+      - PLUGINS_YOUTUBE_OAUTH_REFRESHTOKEN=${PLUGINS_YOUTUBE_OAUTH_REFRESHTOKEN}
+    volumes:
+      - ./plugins:/app/plugins
+      - ./application.yml:/app/application.yml
